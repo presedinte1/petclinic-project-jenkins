@@ -12,6 +12,24 @@ pipeline {
     }
 
     stages {
+        stage('Cleanup Workspace') {
+            steps {
+                cleanWs()
+                sh """
+                echo "Cleaned Up Workspace For Project"
+                """
+            }
+        }
+        stage('Code Checkout') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/presedinte1/petclinic-project-jenkins.git']]
+                ])
+            }
+        }
+
         stage('Compile') {
             steps {
                 sh 'mvn clean compile'
