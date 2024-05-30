@@ -10,8 +10,12 @@ pipeline {
         maven 'Maven 3.9.6'
         jdk 'JDK 8'
     }
-
     stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/presedinte1/petclinic-project-jenkins.git'
+            }
+        }
         stage('Compile') {
             steps {
                 sh 'mvn clean compile'
