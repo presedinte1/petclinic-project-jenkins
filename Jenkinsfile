@@ -6,11 +6,6 @@ pipeline {
         DOCKER_HUB_REPO = 'petclinic-project-jenkins'
     }
 
-    tools {
-        maven 'Maven 3.9.6'
-        jdk 'JDK 8'
-    }
-
     stages {
         stage('Cleanup Workspace') {
             steps {
